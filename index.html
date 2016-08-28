@@ -2,16 +2,101 @@
 <meta charset='utf-8'>
 <title>txt</title>
 
-<h1>Hello world!</h1>
-
 <style>
 	body {
-		font-family: Helvetica;
+		background: #111;
+		color: #eee;
+		font-family: 'Source Code Pro', monospace;
+	}
+
+	* {
+		margin: 0;
+		box-sizing: border-box;
+		font-weight: 400;
+
+		font-size: 14px;
+		line-height: 15px;
+	}
+
+	h1 {
+		font-weight: 300;
+	}
+
+	/* top-level window elements: structure */
+	body {
+		overflow: hidden;
+		height: 100vh;
+	}
+
+	body > .titlebar {
+		height: 23px;
+	}
+
+	body > .document {
+		height: calc(100% - 23px);
+		overflow: scroll;
+	}
+
+	/* titlebar */
+	body > .titlebar {
+		height: 23px;
+		background: linear-gradient(#e8e8e8, #e0e0e0);
+		-webkit-app-region: drag;
+		border-bottom: 1px solid #666;
+		box-shadow: 0px 0px 2px black;
+		text-align: center;
+	}
+
+	body > .titlebar > .windowTitle {
+		font-size: 12px;
+		line-height: 23px;
+		color: #111;
+	}
+
+	/* inactive state (when someone else takes the OS level window focus) */
+	body.window-inactive > .titlebar {
+		background: linear-gradient(#f8f8f8, #efefef);
+	}
+
+	body.window-inactive > .titlebar > .windowTitle {
+		color: #888;
+	}
+
+	body.window-inactive > .document {
+		opacity: 0.5;
+	}
+
+	.document p {
+		white-space: pre;
 	}
 </style>
 
+<div class=titlebar><span class=windowTitle></span></div>
+<div class=document>
+</div>
+
 <script>
+	function $(selector) {
+		return document.querySelector(selector);
+	}
+
+	var ipcRenderer = require('electron').ipcRenderer;
+	ipcRenderer.on('blur', () => {
+		document.body.classList.add('window-inactive');
+	});
+	ipcRenderer.on('focus', () => {
+		document.body.classList.remove('window-inactive');
+	});
+
 	var p = document.createElement('p');
-	p.textContent = `Node ${process.versions.node}, Chrome ${process.versions.chrome}`;
-	document.body.appendChild(p);
+	p.classList.add('content');
+	$('.document').appendChild(p);
+
+	function loadFile(filename) {
+		var file = require('fs').readFileSync(filename, 'utf8');
+		p.textContent = file;
+		$('.windowTitle').textContent = filename;
+	}
+
+	loadFile('index.html');
 </script>
