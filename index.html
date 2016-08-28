@@ -1,8 +1,8 @@
 <!doctype html>
 <meta charset='utf-8'>
 <title>txt</title>
-
 <style>
+	/* misc global styles */
 	body {
 		background: #111;
 		color: #eee;
@@ -28,6 +28,19 @@
 		font-weight: 300;
 	}
 
+	/* app loading state */
+	body {
+		transition: opacity .12s;
+	}
+
+	body.loading {
+		opacity: 0;
+	}
+
+	body:not(.loading) {
+		opacity: 1;
+	}
+
 	/* top-level window elements: structure */
 	body {
 		overflow: hidden;
@@ -43,7 +56,7 @@
 		overflow: scroll;
 	}
 
-	/* titlebar */
+	/* titlebar styles */
 	body > .titlebar {
 		height: 23px;
 		background: linear-gradient(#e8e8e8, #e0e0e0);
@@ -60,26 +73,33 @@
 	}
 
 	/* inactive state (when someone else takes the OS level window focus) */
-	body.window-inactive > .titlebar {
+	body.inactive > .titlebar {
 		background: linear-gradient(#f8f8f8, #efefef);
 	}
 
-	body.window-inactive > .titlebar > .windowTitle {
+	body.inactive > .titlebar > .windowTitle {
 		color: #888;
 	}
 
-	body.window-inactive > .document {
+	body > .document {
+		transition: opacity 0.1s;
+	}
+
+	body.inactive > .document {
 		opacity: 0.5;
 	}
 
+	/* editor styles */
 	.document p {
 		white-space: pre;
 	}
 </style>
 
-<div class=titlebar><span class=windowTitle></span></div>
-<div class=document>
-</div>
+<body class=loading>
+	<div class=titlebar><span class=windowTitle></span></div>
+	<div class=document>
+	</div>
+</body>
 
 <script>
 	function $(selector) {
@@ -88,10 +108,10 @@
 
 	var ipcRenderer = require('electron').ipcRenderer;
 	ipcRenderer.on('blur', () => {
-		document.body.classList.add('window-inactive');
+		document.body.classList.add('inactive');
 	});
 	ipcRenderer.on('focus', () => {
-		document.body.classList.remove('window-inactive');
+		document.body.classList.remove('inactive');
 	});
 
 	var p = document.createElement('p');
@@ -106,4 +126,5 @@
 	}
 
 	loadFile('index.html');
+	document.body.classList.remove('loading');
 </script>

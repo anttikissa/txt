@@ -3,8 +3,10 @@ var window;
 
 function createWindow() {
 	window = new BrowserWindow({
-		width: 1280, height: 800,
-		titleBarStyle: 'hidden'
+		width: 1280,
+		height: 800,
+		titleBarStyle: 'hidden',
+		backgroundColor: '#111'
 	});
 	window.loadURL(`file://${__dirname}/index.html`);
 }
