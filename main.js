@@ -9,6 +9,7 @@ function createWindow() {
 		backgroundColor: '#111'
 	});
 	window.loadURL(`file://${__dirname}/index.html`);
+//	window.webContents.openDevTools();
 }
 
 app.on('ready', createWindow);
