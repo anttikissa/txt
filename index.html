@@ -1,0 +1,17 @@
+<!doctype html>
+<meta charset='utf-8'>
+<title>txt</title>
+
+<h1>Hello world!</h1>
+
+<style>
+	body {
+		font-family: Helvetica;
+	}
+</style>
+
+<script>
+	var p = document.createElement('p');
+	p.textContent = `Node ${process.versions.node}, Chrome ${process.versions.chrome}`;
+	document.body.appendChild(p);
+</script>
