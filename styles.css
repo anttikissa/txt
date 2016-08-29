@@ -1,7 +1,7 @@
 /* misc global styles */
-body {
+body, button {
 	background: #111;
-	color: #eee;
+	color: #bbb;
 	font-family: 'Source Code Pro', monospace;
 }
 
@@ -45,11 +45,54 @@ body {
 
 body > .titlebar {
 	height: 23px;
+	border: 1px solid red;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+
+	/* needs to be relative or absolute to form a stacking context:
+	 * titlebar needs to cover the toolbar when it is hidden */
+	position: relative;
+	z-index: 20;
+}
+
+body > .toolbar {
+	z-index: 10;
 }
 
 body > .document {
 	height: calc(100% - 23px);
+
+	border: 1px solid red;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	padding: 5px;
+}
+
+body > .document > .content {
+	height: 100%;
 	overflow: scroll;
+}
+
+::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+	background-color: transparent;
+}
+
+::-webkit-scrollbar-corner {
+	background-color: transparent;
+}
+
+::-webkit-scrollbar-track {
+	border-radius: 5px;
+	background-color: #333;
+}
+
+::-webkit-scrollbar-thumb {
+/*	width: 6px;
+	height: 6px; */
+    border-radius: 5px;
+	background-color: #666;
 }
 
 /* titlebar styles */
@@ -67,6 +110,74 @@ body > .titlebar > .window-title {
 	font-size: 12px;
 	line-height: 23px;
 	color: #111;
+}
+
+/* toolbar styles */
+body > .toolbar {
+	position: absolute;
+	right: 0;
+
+	height: 29px;
+	background: rgba(0, 0, 0, 0.5);
+	border-bottom: 1px solid rgba(80, 80, 80, 0.5);
+
+	margin-right: 16px;
+	width: 100%;
+	text-align: right;
+}
+
+body > .toolbar > * {
+	margin: 4px;
+	display: inline-block;
+}
+
+/* button styles */
+button {
+	height: 20px;
+	font-size: 13px;
+	line-height: 14px;
+	background: #222;
+	color: #999;
+	border: 1px solid #666;
+	border-radius: 2px;
+	-webkit-user-select: none;
+}
+
+button:hover {
+	color: #ddd;
+	border-color: #888;
+}
+
+button:active {
+	color: #fff;
+	border-color: #aaa;
+}
+
+button:active {
+	outline: none;
+}
+
+button:focus {
+	outline: none;
+}
+
+/* toolbar transition */
+body > .toolbar {
+	margin-top: -29px;
+	transition: margin-top 0.5s;
+}
+
+body.toolbar-active > .toolbar {
+	margin-top: 0;
+}
+
+/* transition of content when toolbar is hiding */
+body > .document > .content {
+	transition: padding-top 0.5s;
+}
+
+body.toolbar-active > .document > .content {
+	padding-top: 29px;
 }
 
 /* inactive state (when someone else takes the OS level window focus) */

@@ -1,6 +1,8 @@
 var { app, BrowserWindow } = require('electron');
 var window;
 
+var autoreload = require('./autoreload');
+
 function createWindow() {
 	window = new BrowserWindow({
 		width: 1280,

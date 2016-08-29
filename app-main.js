@@ -1,5 +1,5 @@
 var { $ } = require('./util');
-var { loadFile } = require('./file');
+var { loadFile, saveFile } = require('./file');
 
 var ipcRenderer = require('electron').ipcRenderer;
 
@@ -10,6 +10,17 @@ ipcRenderer.on('blur', () => {
 ipcRenderer.on('focus', () => {
 	document.body.classList.remove('inactive');
 });
-
-loadFile('index.html');
+loadFile('styles.css');
 document.body.classList.remove('loading');
+
+$('.button-save').addEventListener('click', () => {
+	saveFile();
+});
+
+/* test hiding / showing toolbar
+$('.toolbar').addEventListener('click', function() {
+	console.log('!!! toolbar toggle');
+	document.body.classList.toggle('toolbar-active');
+});
+*/
+

@@ -16,6 +16,19 @@ module.exports = {
 			$('.window-title').textContent = filename;
 			$('.content').textContent = content;
 		});
+	},
+
+	saveFile: () => {
+		if (!currentFile.filename) {
+			return alert(`No file to save`);
+		}
+		var content = $('.content').textContent;
+
+		fs.writeFile(currentFile.filename, content, 'utf8', (err, result) => {
+			if (err) {
+				return alert(`Error saving file ${filename}`);
+			}
+		});
 	}
 };
 
