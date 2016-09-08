@@ -45,7 +45,6 @@ body {
 
 body > .titlebar {
 	height: 23px;
-	border: 1px solid red;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
 
@@ -62,7 +61,6 @@ body > .toolbar {
 body > .document {
 	height: calc(100% - 23px);
 
-	border: 1px solid red;
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
 	padding: 5px;
