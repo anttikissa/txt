@@ -69,6 +69,14 @@ body > .document {
 body > .document > .content {
 	height: 100%;
 	overflow: scroll;
+
+	/* textarea needs these */
+	width: 100%;
+	background-color: inherit;
+	color: inherit;
+	font-family: inherit;
+	resize: none;
+	border: none;
 }
 
 ::-webkit-scrollbar {

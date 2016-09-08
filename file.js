@@ -14,7 +14,7 @@ module.exports = {
 			}
 			currentFile.filename = filename;
 			$('.window-title').textContent = filename;
-			$('.content').textContent = content;
+			$('.content').value = content;
 		});
 	},
 
@@ -22,7 +22,7 @@ module.exports = {
 		if (!currentFile.filename) {
 			return alert(`No file to save`);
 		}
-		var content = $('.content').textContent;
+		var content = $('.content').value;
 
 		fs.writeFile(currentFile.filename, content, 'utf8', (err, result) => {
 			if (err) {
