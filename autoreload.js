@@ -23,6 +23,7 @@ function reload() {
 
 setTimeout(() => {
 	var files = Object.keys(require.cache);
+
 	var rendererFiles = __dirname + '/*.js';
 	chokidar.watch(files.concat(rendererFiles)).on('all', (what, file) => {
 		if (what === 'add') {

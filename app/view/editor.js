@@ -11,14 +11,21 @@ class Editor {
 	}
 
 	update(filename) {
+		var start = Date.now();
+
 		this.filename = filename;
 		loadFile(filename).then(content => {
 			this.content.value = content;
+			log(`editor: load-file ${filename}, ${Date.now() - start} ms`);
 		});
 	}
 
 	saveFile() {
-		return saveFile(this.filename, this.content.value);
+		var start = Date.now();
+
+		return saveFile(this.filename, this.content.value).then(() => {
+			log(`editor: save-file ${this.filename}, ${Date.now() - start} ms`);
+		});
 	}
 }
 

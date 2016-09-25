@@ -1,5 +1,6 @@
 var context = {
-	editor: null
+	editor: null,
+	console: null
 };
 
 module.exports = context;

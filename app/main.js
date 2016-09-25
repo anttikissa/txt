@@ -1,3 +1,7 @@
+var log = require('./log');
+
+log('main: init');
+
 var { mount } = require('redom');
 
 var ipcRenderer = require('electron').ipcRenderer;

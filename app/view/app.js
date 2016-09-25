@@ -3,6 +3,7 @@ var { el } = require('redom');
 var Titlebar = require('./titlebar');
 var Toolbar = require('./toolbar');
 var Editor = require('./editor');
+var Console = require('./console');
 
 var context = require('../context');
 var log = require('../log');
@@ -12,9 +13,11 @@ class App {
 		this.el = el('app.loading.toolbar-active',
 			this.titlebar = new Titlebar,
 			this.toolbar = new Toolbar,
-			this.editor = new Editor);
+			this.editor = new Editor,
+			this.console = new Console);
 
 		context.editor = this.editor;
+		context.console = this.console;
 
 		document.addEventListener('dragover', (event) => {
 			event.preventDefault();
@@ -27,7 +30,8 @@ class App {
 				return alert('Must drag & drop only 1 file, currently');
 			}
 
-			context.editor.update(files[0].path);
+			var relativePath = require('path').relative(process.cwd(), files[0].path);
+			this.update(relativePath);
 		});
 	}
 
