@@ -127,17 +127,17 @@ app > .toolbar {
 	position: absolute;
 	right: 0;
 
-	height: 29px;
+	height: 31px;
 	background: rgba(0, 0, 0, 0.5);
 	border-bottom: 1px solid rgba(80, 80, 80, 0.5);
 
-	margin-right: 16px;
 	width: 100%;
+	padding-right: 11px;
 	text-align: right;
 }
 
 app > .toolbar > * {
-	margin: 4px;
+	margin: 5px;
 	display: inline-block;
 }
 
