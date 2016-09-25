@@ -1,6 +1,4 @@
-var { $ } = require('./util');
-var { loadFile, saveFile } = require('./file');
-var { el, mount } = require('redom');
+var { mount } = require('redom');
 
 var ipcRenderer = require('electron').ipcRenderer;
 

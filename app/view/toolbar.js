@@ -1,3 +1,5 @@
+var { el } = require('redom');
+
 class Toolbar {
 	constructor() {
 		this.el = el('toolbar',

@@ -2,6 +2,9 @@ var Titlebar = require('./titlebar');
 var Toolbar = require('./toolbar');
 var Editor = require('./editor');
 
+var { el } = require('redom');
+var { loadFile, saveFile } = require('../file');
+
 class App {
 	constructor() {
 		this.el = el('app.loading.toolbar-active',

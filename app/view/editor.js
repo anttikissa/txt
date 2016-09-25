@@ -1,3 +1,5 @@
+var { el } = require('redom');
+
 class Editor {
 	constructor() {
 		this.el = el('editor',
