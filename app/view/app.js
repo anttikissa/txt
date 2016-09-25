@@ -1,9 +1,11 @@
+var { el } = require('redom');
+
 var Titlebar = require('./titlebar');
 var Toolbar = require('./toolbar');
 var Editor = require('./editor');
 
-var { el } = require('redom');
-var { loadFile, saveFile } = require('../file');
+var context = require('../context');
+var log = require('../log');
 
 class App {
 	constructor() {
@@ -11,12 +13,29 @@ class App {
 			this.titlebar = new Titlebar,
 			this.toolbar = new Toolbar,
 			this.editor = new Editor);
+
+		context.editor = this.editor;
+
+		document.addEventListener('dragover', (event) => {
+			event.preventDefault();
+		});
+
+		document.addEventListener('drop', (event) => {
+			event.preventDefault();
+			var files = event.dataTransfer.files;
+			if (files.length !== 1) {
+				return alert('Must drag & drop only 1 file, currently');
+			}
+
+			context.editor.update(files[0].path);
+		});
 	}
 
-	update(file) {
-		loadFile(file);
-		this.titlebar.update(file);
-		app.el.classList.remove('loading');
+	update(filename) {
+		this.el.classList.add('loading');
+		this.editor.update(filename);
+		this.titlebar.update(filename);
+		this.el.classList.remove('loading');
 	}
 
 	blur() {

@@ -6,43 +6,24 @@ var currentFile = {
 	filename: undefined
 };
 
+function promisify(f) {
+	return function(...args) {
+		return new Promise(function(resolve, reject) {
+			f.apply(null, [...args, (err, result) => err ? reject(err) : resolve(result)]);
+		});
+	}
+}
+
+var readFile = promisify(fs.readFile);
+var writeFile = promisify(fs.writeFile);
+
 module.exports = {
 	loadFile: (filename) => {
-		fs.readFile(filename, 'utf8', (err, content) => {
-			if (err) {
-				return alert(`Error reading file ${filename}`);
-			}
-			currentFile.filename = filename;
-			$('.content').value = content;
-		});
+		return readFile(filename, 'utf8');
 	},
 
-	saveFile: () => {
-		if (!currentFile.filename) {
-			return alert(`No file to save`);
-		}
-		var content = $('.content').value;
-
-		fs.writeFile(currentFile.filename, content, 'utf8', (err, result) => {
-			if (err) {
-				return alert(`Error saving file ${filename}`);
-			}
-		});
+	saveFile: (filename, content) => {
+		return writeFile(filename, content, 'utf8');
 	}
 };
-
-document.addEventListener('dragover', (event) => {
-	// Figure out what to do here
-	event.preventDefault();
-});
-
-document.addEventListener('drop', (event) => {
-	event.preventDefault();
-	var files = event.dataTransfer.files;
-	if (files.length !== 1) {
-		return alert('Must drag & drop only 1 file, currently');
-	}
-
-	loadFile(files[0].path);
-});
 

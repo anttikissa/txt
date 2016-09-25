@@ -1,4 +1,5 @@
 var { el } = require('redom');
+var context = require('../context');
 
 class Toolbar {
 	constructor() {
@@ -7,10 +8,8 @@ class Toolbar {
 		);
 
 		this.saveButton.addEventListener('click', () => {
-			saveFile();
+			context.editor.saveFile();
 		});
-
-
 	}
 }
 
