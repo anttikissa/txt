@@ -1,6 +1,6 @@
 var chokidar = require('chokidar');
 var { app } = require('electron');
-var log = require('./log');
+var log = require('./app/log');
 var childProcess = require('child_process');
 
 var quitting = false;

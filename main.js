@@ -10,7 +10,7 @@ function createWindow() {
 		titleBarStyle: 'hidden',
 		backgroundColor: '#111'
 	});
-	window.loadURL(`file://${__dirname}/index.html`);
+	window.loadURL(`file://${__dirname}/app/index.html`);
 //	window.webContents.openDevTools();
 }
 

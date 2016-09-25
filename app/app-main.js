@@ -10,7 +10,8 @@ ipcRenderer.on('blur', () => {
 ipcRenderer.on('focus', () => {
 	document.body.classList.remove('inactive');
 });
-loadFile('styles.css');
+
+loadFile('app/app-main.js');
 document.body.classList.remove('loading');
 
 $('.button-save').addEventListener('click', () => {
