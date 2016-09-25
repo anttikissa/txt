@@ -1,6 +1,6 @@
 class Titlebar {
 	constructor() {
-		this.el = el('.titlebar',
+		this.el = el('titlebar',
 			this.title = el('span.window-title'));
 	}
 

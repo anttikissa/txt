@@ -47,22 +47,25 @@ app {
 	height: 100vh;
 }
 
-app > .titlebar {
+app > titlebar {
+	display: block;
 	height: 23px;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
 
 	/* needs to be relative or absolute to form a stacking context:
-	 * titlebar needs to cover the toolbar when it is hidden */
+	 *titlebar needs to cover thetoolbar when it is hidden */
 	position: relative;
 	z-index: 20;
 }
 
-app > .toolbar {
+app > toolbar {
 	z-index: 10;
 }
 
-app > .document {
+app > editor {
+	display: block;
+
 	height: calc(100% - 23px);
 
 	border-bottom-left-radius: 5px;
@@ -70,7 +73,7 @@ app > .document {
 	padding: 5px;
 }
 
-app > .document > .content {
+app > editor > .content {
 	height: 100%;
 	overflow: scroll;
 
@@ -105,8 +108,8 @@ app > .document > .content {
 	background-color: #666;
 }
 
-/* titlebar styles */
-app > .titlebar {
+/*titlebar styles */
+app > titlebar {
 	height: 23px;
 	background: linear-gradient(#e8e8e8, #e0e0e0);
 	border-bottom: 1px solid #666;
@@ -116,14 +119,15 @@ app > .titlebar {
 	-webkit-app-region: drag;
 }
 
-app > .titlebar > .window-title {
+app > titlebar > .window-title {
 	font-size: 12px;
 	line-height: 23px;
 	color: #111;
 }
 
 /* toolbar styles */
-app > .toolbar {
+app > toolbar {
+	display: block;
 	position: absolute;
 	right: 0;
 
@@ -136,7 +140,7 @@ app > .toolbar {
 	text-align: right;
 }
 
-app > .toolbar > * {
+app > toolbar > * {
 	margin: 5px;
 	display: inline-block;
 }
@@ -171,48 +175,48 @@ button:focus {
 	outline: none;
 }
 
-/* toolbar transition */
-app > .toolbar {
+/*toolbar transition */
+app > toolbar {
 	margin-top: -29px;
 	transition: margin-top 0.5s;
 }
 
-app.toolbar-active > .toolbar {
+app.toolbar-active > toolbar {
 	margin-top: 0;
 }
 
-/* transition of content when toolbar is hiding */
-app > .document > .content {
+/* transition of content whentoolbar is hiding */
+app > editor > .content {
 	transition: padding-top 0.5s;
 }
 
-app.toolbar-active > .document > .content {
+app.toolbar-active > editor > .content {
 	padding-top: 29px;
 }
 
 /* inactive state (when someone else takes the OS level window focus) */
-app.inactive > .titlebar {
+app.inactive > titlebar {
 	background: linear-gradient(#f8f8f8, #efefef);
 }
 
-app.inactive > .titlebar > .window-title {
+app.inactive > titlebar > .window-title {
 	color: #888;
 }
 
-app > .document {
+app > editor {
 	transition: opacity 0.1s;
 }
 
-app.inactive > .document {
+app.inactive > editor {
 	opacity: 0.5;
 }
 
-/* editor styles */
-.document > .content {
+/*editor styles */
+editor > .content {
 	white-space: pre;
 }
 
-.document > .content:focus {
+editor > .content:focus {
 	outline: none;
 }
 

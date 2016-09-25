@@ -1,12 +1,13 @@
 var Titlebar = require('./titlebar');
 var Toolbar = require('./toolbar');
+var Editor = require('./editor');
 
 class App {
 	constructor() {
 		this.el = el('app.loading.toolbar-active',
 			this.titlebar = new Titlebar,
 			this.toolbar = new Toolbar,
-			this.document = el('.document', el('textarea.content')));
+			this.editor = new Editor);
 	}
 
 	update(file) {

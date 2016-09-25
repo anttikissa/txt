@@ -13,13 +13,8 @@ ipcRenderer.on('focus', () => app.focus());
 mount(document.body, app);
 app.update('app/main.js');
 
-$('.button-save').addEventListener('click', () => {
-	saveFile();
-});
-
-/* test hiding / showing toolbar
- $('.toolbar').addEventListener('click', function() {
- console.log('!!! toolbar toggle');
- document.body.classList.toggle('toolbar-active');
- });
- */
+// test hiding / showing toolbar
+// $('.toolbar').addEventListener('click', function() {
+// console.log('!!! toolbar toggle');
+// document.body.classList.toggle('toolbar-active');
+// });
