@@ -1,8 +1,12 @@
 /* misc global styles */
-body, button {
+app, button {
 	background: #111;
 	color: #bbb;
 	font-family: 'Source Code Pro', monospace;
+}
+
+app {
+	display: block;
 }
 
 ::selection {
@@ -25,25 +29,25 @@ h1 {
 }
 
 /* app loading state */
-body {
+app {
 	transition: opacity .12s;
 }
 
-body.loading {
+app.loading {
 	opacity: 0;
 }
 
-body:not(.loading) {
+app:not(.loading) {
 	opacity: 1;
 }
 
 /* top-level window elements: structure */
-body {
+app {
 	overflow: hidden;
 	height: 100vh;
 }
 
-body > .titlebar {
+app > .titlebar {
 	height: 23px;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
@@ -54,11 +58,11 @@ body > .titlebar {
 	z-index: 20;
 }
 
-body > .toolbar {
+app > .toolbar {
 	z-index: 10;
 }
 
-body > .document {
+app > .document {
 	height: calc(100% - 23px);
 
 	border-bottom-left-radius: 5px;
@@ -66,7 +70,7 @@ body > .document {
 	padding: 5px;
 }
 
-body > .document > .content {
+app > .document > .content {
 	height: 100%;
 	overflow: scroll;
 
@@ -102,7 +106,7 @@ body > .document > .content {
 }
 
 /* titlebar styles */
-body > .titlebar {
+app > .titlebar {
 	height: 23px;
 	background: linear-gradient(#e8e8e8, #e0e0e0);
 	border-bottom: 1px solid #666;
@@ -112,14 +116,14 @@ body > .titlebar {
 	-webkit-app-region: drag;
 }
 
-body > .titlebar > .window-title {
+app > .titlebar > .window-title {
 	font-size: 12px;
 	line-height: 23px;
 	color: #111;
 }
 
 /* toolbar styles */
-body > .toolbar {
+app > .toolbar {
 	position: absolute;
 	right: 0;
 
@@ -132,7 +136,7 @@ body > .toolbar {
 	text-align: right;
 }
 
-body > .toolbar > * {
+app > .toolbar > * {
 	margin: 4px;
 	display: inline-block;
 }
@@ -168,38 +172,38 @@ button:focus {
 }
 
 /* toolbar transition */
-body > .toolbar {
+app > .toolbar {
 	margin-top: -29px;
 	transition: margin-top 0.5s;
 }
 
-body.toolbar-active > .toolbar {
+app.toolbar-active > .toolbar {
 	margin-top: 0;
 }
 
 /* transition of content when toolbar is hiding */
-body > .document > .content {
+app > .document > .content {
 	transition: padding-top 0.5s;
 }
 
-body.toolbar-active > .document > .content {
+app.toolbar-active > .document > .content {
 	padding-top: 29px;
 }
 
 /* inactive state (when someone else takes the OS level window focus) */
-body.inactive > .titlebar {
+app.inactive > .titlebar {
 	background: linear-gradient(#f8f8f8, #efefef);
 }
 
-body.inactive > .titlebar > .window-title {
+app.inactive > .titlebar > .window-title {
 	color: #888;
 }
 
-body > .document {
+app > .document {
 	transition: opacity 0.1s;
 }
 
-body.inactive > .document {
+app.inactive > .document {
 	opacity: 0.5;
 }
 
