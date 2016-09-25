@@ -13,7 +13,6 @@ module.exports = {
 				return alert(`Error reading file ${filename}`);
 			}
 			currentFile.filename = filename;
-			$('.window-title').textContent = filename;
 			$('.content').value = content;
 		});
 	},
