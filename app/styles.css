@@ -86,10 +86,28 @@ app > editor > .content {
 	border: none;
 }
 
-app > log {
+app > console {
 	display: block;
 	height: 200px;
+	padding: 2px 5px;
+}
+
+app > console > .output {
+	height: 100%;
+	width: 100%;
+
+	border: none;
+	color: inherit;
+	background: inherit;
+	font: inherit;
+
 	white-space: pre;
+	overflow: auto;
+	resize: none;
+}
+
+app > console > .output:focus {
+	outline: 0;
 }
 
 ::-webkit-scrollbar {

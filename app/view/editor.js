@@ -8,6 +8,10 @@ class Editor {
 		this.filename = null;
 		this.el = el('editor',
 			this.content = el('textarea.content'));
+
+		// this.el.addEventListener('mousemove', ev => {
+		// 	log('got ev', ev);
+		// })
 	}
 
 	update(filename) {
